@@ -56,11 +56,19 @@ func (b *BigInt) UnmarshalText(text []byte) (err error) {
 
 //MarshalText implements the text marshal interface
 func (b *BigInt) MarshalText() (text []byte, err error) {
+	if (b.Int().String() == `<nil>`) {
+		zero := big.NewInt(0)
+		*b = BigInt(*zero)
+	}
 	return []byte(b.Int().String()), nil
 }
 
 //MarshalBSONValue implements the bson.ValueMarshaler interface
 func (b *BigInt) MarshalBSONValue() (bsontype.Type, []byte, error) {
+	if (b.Int().String() == `<nil>`) {
+		zero := big.NewInt(0)
+		*b = BigInt(*zero)
+	}
 	return bsontype.String, bsoncore.AppendString(nil, b.Int().String()), nil
 }
 
