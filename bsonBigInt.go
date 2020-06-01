@@ -45,7 +45,9 @@ func (b *BigInt) UnmarshalText(text []byte) (err error) {
 	var bigInt = new(big.Int)
 	err = bigInt.UnmarshalText(text)
 	if err != nil {
-		return
+		value := big.NewInt(0)
+		*b = BigInt(*value)
+		return err
 	}
 
 	*b = BigInt(*bigInt)
