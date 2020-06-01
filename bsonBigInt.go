@@ -25,17 +25,8 @@ func (b *BigInt) Int() *big.Int {
 	return (*big.Int)(b)
 }
 
-// NewBigInt create a new BigInt from a big.Int
-func NewBigInt(value *big.Int) *BigInt {
-	text := value.Bytes()
-	var bigInt = new(big.Int)
-	err := bigInt.UnmarshalText(text)
-	if err != nil {
-		value = big.NewInt(0)
-		b := BigInt(*value)
-		return &b
-	}
-
+// New create a new BigInt from a big.Int
+func New(value *big.Int) *BigInt {
 	b := BigInt(*value)
 	return &b
 }
