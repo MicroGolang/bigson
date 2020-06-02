@@ -42,6 +42,15 @@ func SetUint64(value uint64) *BigInt {
 	b := BigInt(*bigValue)
 	return &b
 }
+// SetString create a new BigInt from a string
+func SetString(value string, base int) (*BigInt, bool) {
+	bigValue, ok := big.NewInt(0).SetString(value, base)
+	if (!ok) {
+		return nil, false
+	}
+	b := BigInt(*bigValue)
+	return &b, true
+}
 
 // Sum returns the sum of old + new
 func Sum(old, new *BigInt) *BigInt {
