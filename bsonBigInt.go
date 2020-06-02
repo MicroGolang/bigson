@@ -31,8 +31,8 @@ func New(value *big.Int) *BigInt {
 	return &b
 }
 // NewInt create a new BigInt from a int
-func NewInt(value int) *BigInt {
-	bigValue := big.NewInt(int64(value))
+func NewInt(value int64) *BigInt {
+	bigValue := big.NewInt(value)
 	b := BigInt(*bigValue)
 	return &b
 }
