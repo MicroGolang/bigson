@@ -36,6 +36,13 @@ func NewInt(value int64) *BigInt {
 	b := BigInt(*bigValue)
 	return &b
 }
+// SetUint64 create a new BigInt from a uint64
+func SetUint64(value uint64) *BigInt {
+	bigValue := big.NewInt(0).SetUint64(value)
+	b := BigInt(*bigValue)
+	return &b
+}
+
 // Sum returns the sum of old + new
 func Sum(old, new *BigInt) *BigInt {
 	result := big.NewInt(0).Add(old.Int(), new.Int())
