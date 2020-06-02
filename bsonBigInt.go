@@ -64,7 +64,7 @@ func Sub(old, new *BigInt) *BigInt {
 }
 // Cmp compare x and y and resolve -1 if x < y || 0 if x == y || +1 if x > y
 func Cmp(x, y *BigInt) int {
-	return big.NewInt(0).Cmp(x.Int(), y.Int())
+	return x.Int().Cmp(y.Int())
 }
 
 //UnmarshalText implements the text Unmarshal interface
