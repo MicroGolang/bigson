@@ -30,6 +30,12 @@ func New(value *big.Int) *BigInt {
 	b := BigInt(*value)
 	return &b
 }
+// NewInt create a new BigInt from a int
+func NewInt(value int) *BigInt {
+	bigValue := big.NewInt(int64(value))
+	b := BigInt(*bigValue)
+	return &b
+}
 
 //UnmarshalText implements the text Unmarshal interface
 func (b *BigInt) UnmarshalText(text []byte) (err error) {
