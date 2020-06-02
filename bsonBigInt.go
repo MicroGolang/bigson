@@ -41,6 +41,11 @@ func Sum(old, new *BigInt) *BigInt {
 	result := big.NewInt(0).Add(old.Int(), new.Int())
 	return New(result)
 }
+// Sub returns the sub of old - new
+func Sub(old, new *BigInt) *BigInt {
+	result := big.NewInt(0).Sub(old.Int(), new.Int())
+	return New(result)
+}
 
 //UnmarshalText implements the text Unmarshal interface
 func (b *BigInt) UnmarshalText(text []byte) (err error) {
