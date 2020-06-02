@@ -66,6 +66,10 @@ func Sub(old, new *BigInt) *BigInt {
 func Cmp(x, y *BigInt) int {
 	return x.Int().Cmp(y.Int())
 }
+// String return a representation of b as a string
+func (b *BigInt) String() string {
+	return b.Int().String()
+}
 
 //UnmarshalText implements the text Unmarshal interface
 func (b *BigInt) UnmarshalText(text []byte) (err error) {
