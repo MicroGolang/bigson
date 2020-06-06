@@ -12,7 +12,6 @@ package bigson
 import	(
 	"errors"
 	"math/big"
-	"strconv"
 	"go.mongodb.org/mongo-driver/bson/bsontype"
 	"go.mongodb.org/mongo-driver/x/bsonx/bsoncore"
 )
