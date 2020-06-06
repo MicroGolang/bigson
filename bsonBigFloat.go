@@ -12,6 +12,7 @@ package bigson
 import	(
 	"errors"
 	"math/big"
+	"strconv"
 	"go.mongodb.org/mongo-driver/bson/bsontype"
 	"go.mongodb.org/mongo-driver/x/bsonx/bsoncore"
 )
@@ -67,18 +68,18 @@ func (b *BigFloat) UnmarshalText(text []byte) (err error) {
 
 //MarshalText implements the text marshal interface
 func (b *BigFloat) MarshalText() (text []byte, err error) {
-	if (b.Float().String() == `<nil>`) {
+	if (b.Float().Text('f', -1) == `<nil>`) {
 		return []byte("0"), nil
 	}
-	return []byte(b.Float().String()), nil
+	return []byte(b.Float().Text('f', -1)), nil
 }
 
 //MarshalBSONValue implements the bson.ValueMarshaler interface
 func (b *BigFloat) MarshalBSONValue() (bsontype.Type, []byte, error) {
-	if (b.Float().String() == `<nil>`) {
+	if (b.Float().Text('f', -1) == `<nil>`) {
 		return bsontype.String, bsoncore.AppendString(nil, "0"), nil
 	}
-	return bsontype.String, bsoncore.AppendString(nil, b.Float().String()), nil
+	return bsontype.String, bsoncore.AppendString(nil, b.Float().Text('f', -1)), nil
 }
 
 // UnmarshalBSONValue is an interface implemented that can unmarshal a BSON
