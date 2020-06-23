@@ -9,9 +9,10 @@
 
 package bigson
 
-import	(
+import (
 	"errors"
 	"math/big"
+
 	"go.mongodb.org/mongo-driver/bson/bsontype"
 	"go.mongodb.org/mongo-driver/x/bsonx/bsoncore"
 )
@@ -67,7 +68,7 @@ func (b *BigFloat) UnmarshalText(text []byte) (err error) {
 
 //MarshalText implements the text marshal interface
 func (b *BigFloat) MarshalText() (text []byte, err error) {
-	if (b.Float().Text('f', -1) == `<nil>`) {
+	if (b == nil || b.Float().Text('f', -1) == `<nil>`) {
 		return []byte("0"), nil
 	}
 	return []byte(b.Float().Text('f', -1)), nil
@@ -75,7 +76,7 @@ func (b *BigFloat) MarshalText() (text []byte, err error) {
 
 //MarshalBSONValue implements the bson.ValueMarshaler interface
 func (b *BigFloat) MarshalBSONValue() (bsontype.Type, []byte, error) {
-	if (b.Float().Text('f', -1) == `<nil>`) {
+	if (b == nil || b.Float().Text('f', -1) == `<nil>`) {
 		return bsontype.String, bsoncore.AppendString(nil, "0"), nil
 	}
 	return bsontype.String, bsoncore.AppendString(nil, b.Float().Text('f', -1)), nil
