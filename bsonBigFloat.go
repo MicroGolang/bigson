@@ -31,12 +31,14 @@ func NewBigFloat(value *big.Float) *BigFloat {
 	b := BigFloat(*value)
 	return &b
 }
+
 // NewFloat create a new BigFloat from a int
 func NewFloat(value float64) *BigFloat {
 	bigValue := big.NewFloat(value)
 	b := BigFloat(*bigValue)
 	return &b
 }
+
 // SetString create a new BigFloat from a string
 func (b *BigFloat) SetString(value string) (*BigFloat, bool) {
 	bigValue, ok := big.NewFloat(0).SetString(value)
